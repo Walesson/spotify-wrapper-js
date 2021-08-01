@@ -2,15 +2,12 @@ const webpack = require("webpack");
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
-// const Dotenv = require("dotenv-webpack");
 const dotenv = require("dotenv").config({
   path: path.resolve(__dirname, "../.env"),
 });
 
 const PORT = process.env.PORT || 3003;
 const NODE_ENV = process.env.NODE_ENV || "development";
-console.info("PORT", PORT);
-console.info("NODE_ENV", NODE_ENV);
 
 module.exports = {
   mode: NODE_ENV,
@@ -18,6 +15,8 @@ module.exports = {
   output: {
     filename: "bundle.[hash].js",
     path: path.resolve(__dirname, "../dist"),
+    libraryTarget: "umd",
+    library: "spotifyWrapper",
   },
   devtool: NODE_ENV === "development" ? "eval-source-map" : false,
   devServer: {
@@ -36,9 +35,6 @@ module.exports = {
         test: /\.js$|jsx/,
         exclude: /node_modules/,
         use: ["babel-loader"],
-        // options: {
-        //   presets: ["@babel/preset-env", "@babel/preset-react"],
-        // },
       },
       {
         test: /\.s[a|c]ss$/,
@@ -66,7 +62,7 @@ module.exports = {
       favicon: "public/favicon.ico",
     }),
     new webpack.DefinePlugin({
-      "process.env": dotenv.parsed,
+      "process.env": JSON.stringify(dotenv.parsed),
     }),
   ],
   optimization: {

@@ -1,10 +1,10 @@
 {
-  "name": "js-tdd",
+  "name": "spotify-wrapper",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --bail --env=jsdom",
+    "test": "jest --bail --env=jsdom --setupFiles dotenv/config",
     "start": "NODE_ENV=development webpack serve --inline --config config/webpack.config.js",
     "dev": "NODE_ENV=development webpack --config config/webpack.config.js",
     "build": "NODE_ENV=production webpack --config config/webpack.config.js"
@@ -32,6 +32,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^27.0.4",
     "lint-staged": "^11.0.0",
+    "node-fetch": "^2.6.1",
     "sass-loader": "^12.1.0",
     "style-loader": "^3.1.0",
     "terser-webpack-plugin": "^5.1.4",
@@ -55,7 +56,9 @@
     "sass": "^1.35.2"
   },
   "jest": {
-    "setupFilesAfterEnv": ["<rootDir>/setupTests.js"],
+    "setupFilesAfterEnv": [
+      "<rootDir>/setupTests.js"
+    ],
     "moduleNameMapper": {
       "\\.(css|scss|svg)$": "identity-obj-proxy"
     },
