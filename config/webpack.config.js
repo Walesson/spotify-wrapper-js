@@ -20,6 +20,7 @@ module.exports = {
   },
   devtool: NODE_ENV === "development" ? "eval-source-map" : false,
   devServer: {
+    compress: true,
     host: "localhost",
     port: PORT,
     historyApiFallback: true,

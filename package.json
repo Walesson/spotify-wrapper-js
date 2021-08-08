@@ -3,15 +3,20 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "lib": "lib/index.js",
   "scripts": {
     "test": "jest --bail --env=jsdom --setupFiles dotenv/config",
     "start": "NODE_ENV=development webpack serve --inline --config config/webpack.config.js",
     "dev": "NODE_ENV=development webpack --config config/webpack.config.js",
     "build": "NODE_ENV=production webpack --config config/webpack.config.js"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["js","tdd", "libray"],
+  "author": "Walesson Silva <walesson.silva.job@gmail.com> (https://github.com/Walesson)",
   "license": "ISC",
+  "files": [
+    "dist",
+    "lib"
+  ],
   "devDependencies": {
     "@babel/preset-env": "^7.14.7",
     "@babel/preset-react": "^7.14.5",
